@@ -1,0 +1,99 @@
+{
+  "widthMm": 50,
+  "heightMm": 30,
+  "gapMm": 2,
+  "safeMarginMm": 2,
+  "dynamicCsv": "recipient,address,city,postal,tracking\nNguyen An,\"12 Nguyen Trai Street\",Ho Chi Minh City,700000,PKG-2026-001\nMika Tanaka,\"4-2 Shibuya\",Tokyo,150-0002,PKG-2026-002",
+  "elements": [
+    {
+      "id": "shipping-frame",
+      "type": "rect",
+      "name": "Frame",
+      "x": 2,
+      "y": 2,
+      "w": 46,
+      "h": 26,
+      "fill": "#ffffff",
+      "stroke": "#aab7ae",
+      "strokeWidth": 0.25,
+      "radius": 1
+    },
+    {
+      "id": "shipping-title",
+      "type": "text",
+      "name": "Header",
+      "x": 3,
+      "y": 2.5,
+      "w": 30,
+      "h": 2,
+      "text": "SHIP TO",
+      "fontSize": 2,
+      "fill": "#536057",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "shipping-recipient",
+      "type": "fitText",
+      "name": "Recipient",
+      "x": 3,
+      "y": 5,
+      "w": 31,
+      "h": 4,
+      "text": "{{recipient}}",
+      "fill": "#111111",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "shipping-address",
+      "type": "fitText",
+      "name": "Address",
+      "x": 3,
+      "y": 10,
+      "w": 31,
+      "h": 5,
+      "text": "{{address}}",
+      "fill": "#252d29",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "shipping-city",
+      "type": "fitText",
+      "name": "City and postal code",
+      "x": 3,
+      "y": 16,
+      "w": 31,
+      "h": 4,
+      "text": "{{city}} {{postal}}",
+      "fill": "#252d29",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "shipping-tracking",
+      "type": "text",
+      "name": "Tracking number",
+      "x": 3,
+      "y": 22,
+      "w": 31,
+      "h": 3,
+      "text": "TRACKING  {{tracking}}",
+      "fontSize": 1.8,
+      "fill": "#18231d",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "shipping-qr",
+      "type": "qr",
+      "name": "Tracking QR",
+      "x": 37,
+      "y": 7,
+      "w": 10,
+      "h": 10,
+      "data": "{{tracking}}"
+    }
+  ]
+}

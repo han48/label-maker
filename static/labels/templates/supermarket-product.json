@@ -1,0 +1,111 @@
+{
+  "widthMm": 50,
+  "heightMm": 30,
+  "gapMm": 2,
+  "safeMarginMm": 2,
+  "dynamicCsv": "product,description,price,unit,sku,ean\n\"Organic whole milk\",\"Fresh whole milk from local farms. Keep refrigerated.\",\"32,500 ₫\",\"1 L\",MILK-01,4006381333931\n\"Wholegrain bread\",\"Wholegrain loaf baked fresh daily. Contains wheat and gluten.\",\"28,000 ₫\",\"500 g\",BREAD-02,5901234123457\n\"Free-range eggs\",\"A dozen farm eggs from free-range hens.\",\"48,000 ₫\",\"12 pcs\",EGGS-03,5901234123458\n\"Greek yogurt\",\"Thick and creamy plain yogurt. Keep refrigerated.\",\"22,500 ₫\",\"400 g\",YOGURT-04,5901234123459\n\"Orange juice\",\"Freshly squeezed juice with no added sugar.\",\"39,000 ₫\",\"1 L\",JUICE-05,5901234123460\n\"Arabica coffee\",\"Medium roast whole-bean coffee from Vietnam.\",\"125,000 ₫\",\"250 g\",COFFEE-06,5901234123461\n\"Jasmine rice\",\"Fragrant long-grain rice for everyday meals.\",\"68,000 ₫\",\"2 kg\",RICE-07,5901234123462\n\"Rolled oats\",\"Whole-grain oats for breakfast and baking.\",\"54,000 ₫\",\"1 kg\",OATS-08,5901234123463\n\"Peanut butter\",\"Creamy roasted peanut spread. Contains peanuts.\",\"72,000 ₫\",\"340 g\",PEANUT-09,5901234123464\n\"Strawberry jam\",\"Sweet strawberry preserve made with real fruit.\",\"46,000 ₫\",\"300 g\",JAM-10,5901234123465\n\"Dark chocolate\",\"Rich dark chocolate with 70% cocoa.\",\"36,000 ₫\",\"100 g\",CHOC-11,5901234123466\n\"Potato chips\",\"Crispy lightly salted potato chips.\",\"25,000 ₫\",\"150 g\",CHIPS-12,5901234123467\n\"Tomato sauce\",\"Classic tomato sauce for pasta and pizza.\",\"31,000 ₫\",\"500 g\",SAUCE-13,5901234123468\n\"Olive oil\",\"Extra virgin olive oil for cooking and salads.\",\"168,000 ₫\",\"500 ml\",OIL-14,5901234123469\n\"Pasta spirals\",\"Durum wheat pasta. Cooks in 8 to 10 minutes.\",\"29,000 ₫\",\"500 g\",PASTA-15,5901234123470\n\"Green tea\",\"Fragrant loose-leaf green tea from Thai Nguyen.\",\"58,000 ₫\",\"100 g\",TEA-16,5901234123471\n\"Dish soap\",\"Lemon-scented dishwashing liquid.\",\"42,000 ₫\",\"750 ml\",SOAP-17,5901234123472\n\"Laundry detergent\",\"Concentrated detergent for everyday laundry.\",\"95,000 ₫\",\"2 L\",DETERGENT-18,5901234123473\n\"Hand cream\",\"Moisturizing hand cream with shea butter.\",\"64,000 ₫\",\"75 ml\",CREAM-19,5901234123474\n\"Mineral water\",\"Natural mineral water in a recyclable bottle.\",\"12,000 ₫\",\"1.5 L\",WATER-20,5901234123475",
+  "elements": [
+    {
+      "id": "supermarket-brand",
+      "type": "text",
+      "name": "Store name",
+      "x": 2,
+      "y": 2,
+      "w": 26,
+      "h": 2,
+      "text": "FRESH MARKET",
+      "fontSize": 1.8,
+      "fill": "#526158",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "supermarket-product",
+      "type": "fitText",
+      "name": "Product name",
+      "x": 2,
+      "y": 4.5,
+      "w": 33,
+      "h": 4,
+      "text": "{{product}}",
+      "fill": "#18231d",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "supermarket-description",
+      "type": "fitText",
+      "name": "Product description",
+      "x": 2,
+      "y": 9,
+      "w": 33,
+      "h": 7,
+      "text": "{{description}}",
+      "fill": "#526158",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "supermarket-qr",
+      "type": "qr",
+      "name": "Product QR",
+      "x": 37,
+      "y": 5,
+      "w": 10,
+      "h": 10,
+      "data": "SKU: {{sku}}"
+    },
+    {
+      "id": "supermarket-price",
+      "type": "text",
+      "name": "Price",
+      "x": 2,
+      "y": 17,
+      "w": 24,
+      "h": 5,
+      "text": "{{price}}",
+      "fontSize": 3.8,
+      "fill": "#176c50",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "supermarket-unit",
+      "type": "text",
+      "name": "Unit",
+      "x": 28,
+      "y": 18,
+      "w": 18,
+      "h": 3,
+      "text": "{{unit}}",
+      "fontSize": 1.8,
+      "fill": "#526158",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "supermarket-sku",
+      "type": "text",
+      "name": "SKU",
+      "x": 2,
+      "y": 23,
+      "w": 17,
+      "h": 3,
+      "text": "SKU {{sku}}",
+      "fontSize": 1.5,
+      "fill": "#59645e",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "supermarket-barcode",
+      "type": "barcode",
+      "name": "EAN-13 barcode",
+      "x": 20,
+      "y": 22,
+      "w": 28,
+      "h": 6,
+      "data": "{{ean}}"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "widthMm": 50,
+  "heightMm": 30,
+  "gapMm": 2,
+  "safeMarginMm": 2,
+  "dynamicCsv": "product,price,unit,sku\n\"Organic green tea\",\"49.000 d\",100 g,TEA-101\n\"Dark chocolate\",\"65.000 d\",80 g,CHO-205",
+  "elements": [
+    {
+      "id": "retail-store",
+      "type": "text",
+      "name": "Store",
+      "x": 2,
+      "y": 2,
+      "w": 30,
+      "h": 2.5,
+      "text": "FRESH MARKET",
+      "fontSize": 1.7,
+      "fill": "#526158",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "retail-product",
+      "type": "fitText",
+      "name": "Product",
+      "x": 2,
+      "y": 5.5,
+      "w": 32,
+      "h": 6,
+      "text": "{{product}}",
+      "fill": "#18231d",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "retail-price",
+      "type": "text",
+      "name": "Price",
+      "x": 2,
+      "y": 13,
+      "w": 32,
+      "h": 8,
+      "text": "{{price}}",
+      "fontSize": 5.7,
+      "fill": "#176c50",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "retail-unit",
+      "type": "text",
+      "name": "Unit",
+      "x": 2,
+      "y": 21.5,
+      "w": 21,
+      "h": 3,
+      "text": "Net {{unit}}",
+      "fontSize": 1.8,
+      "fill": "#536057",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "retail-sku",
+      "type": "text",
+      "name": "SKU",
+      "x": 2,
+      "y": 25,
+      "w": 22,
+      "h": 2.5,
+      "text": "{{sku}}",
+      "fontSize": 1.4,
+      "fill": "#7b8580",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "retail-qr",
+      "type": "qr",
+      "name": "Product QR",
+      "x": 36,
+      "y": 8,
+      "w": 11,
+      "h": 11,
+      "data": "SKU: {{sku}} | {{product}}"
+    }
+  ]
+}

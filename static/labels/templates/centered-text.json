@@ -1,0 +1,67 @@
+{
+  "widthMm": 50,
+  "heightMm": 30,
+  "gapMm": 2,
+  "safeMarginMm": 2,
+  "dynamicCsv": "product,subtitle,price\n\"HOUSE BLEND\",\"Freshly roasted coffee beans\",\"89,000 ₫\"\n\"DARK CHOCOLATE\",\"Rich cocoa, smooth finish\",\"65,000 ₫\"",
+  "elements": [
+    {
+      "id": "centered-heading",
+      "type": "text",
+      "name": "Heading",
+      "x": 3,
+      "y": 3,
+      "w": 44,
+      "h": 4,
+      "text": "FRESH MARKET",
+      "fontSize": 2.2,
+      "fill": "#526158",
+      "bold": true,
+      "align": "center",
+      "verticalAlign": "middle"
+    },
+    {
+      "id": "centered-product",
+      "type": "fitText",
+      "name": "Product name",
+      "x": 3,
+      "y": 8,
+      "w": 44,
+      "h": 7,
+      "text": "{{product}}",
+      "fill": "#18231d",
+      "bold": true,
+      "align": "center",
+      "verticalAlign": "middle"
+    },
+    {
+      "id": "centered-subtitle",
+      "type": "fitText",
+      "name": "Product description",
+      "x": 4,
+      "y": 16,
+      "w": 42,
+      "h": 4,
+      "text": "{{subtitle}}",
+      "fill": "#526158",
+      "bold": false,
+      "align": "center",
+      "verticalAlign": "middle"
+    },
+    {
+      "id": "centered-price",
+      "type": "text",
+      "name": "Price",
+      "x": 3,
+      "y": 21,
+      "w": 44,
+      "h": 5,
+      "text": "{{price}}",
+      "fontSize": 3.2,
+      "fill": "#176c50",
+      "bold": true,
+      "align": "center",
+      "verticalAlign": "middle"
+    }
+  ]
+}

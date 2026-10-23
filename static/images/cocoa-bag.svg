@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="300" viewBox="0 0 240 300">
+  <rect width="240" height="300" rx="24" fill="#f3e8df"/>
+  <path d="M48 66 70 38h100l22 28-14 190H62z" fill="#70483c"/>
+  <path d="M48 66h144l-10 22H58z" fill="#52352e"/>
+  <path d="M69 112h102v82H69z" rx="8" fill="#f7eee6"/>
+  <text x="120" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#52352e">COCOA</text>
+  <text x="120" y="169" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#52352e">BLEND</text>
+  <path d="M120 211c-26 12-26 39 0 48 26-9 26-36 0-48z" fill="#a96c52"/>
+  <path d="M120 215v40" stroke="#70483c" stroke-width="3"/>
+  <text x="120" y="280" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" letter-spacing="2" fill="#675b49">RICH &amp; SMOOTH</text>
+</svg>

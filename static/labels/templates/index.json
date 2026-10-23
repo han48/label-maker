@@ -1,0 +1,51 @@
+[
+  {
+    "id": "coffee-product",
+    "file": "coffee-product.json",
+    "titleKey": "Coffee product template",
+    "descriptionKey": "Coffee product template description",
+    "icon": "fa-mug-hot"
+  },
+  {
+    "id": "retail-price",
+    "file": "retail-price.json",
+    "titleKey": "Retail price template",
+    "descriptionKey": "Retail price template description",
+    "icon": "fa-tag"
+  },
+  {
+    "id": "supermarket-product",
+    "file": "supermarket-product.json",
+    "titleKey": "Supermarket product template",
+    "descriptionKey": "Supermarket product template description",
+    "icon": "fa-barcode"
+  },
+  {
+    "id": "product-image",
+    "file": "product-image.json",
+    "titleKey": "Product image template",
+    "descriptionKey": "Product image template description",
+    "icon": "fa-image"
+  },
+  {
+    "id": "centered-text",
+    "file": "centered-text.json",
+    "titleKey": "Centered text template",
+    "descriptionKey": "Centered text template description",
+    "icon": "fa-align-center"
+  },
+  {
+    "id": "single-centered-text",
+    "file": "single-centered-text.json",
+    "titleKey": "Single centered text template",
+    "descriptionKey": "Single centered text template description",
+    "icon": "fa-font"
+  },
+  {
+    "id": "shipping-label",
+    "file": "shipping-label.json",
+    "titleKey": "Shipping label template",
+    "descriptionKey": "Shipping label template description",
+    "icon": "fa-truck-fast"
+  }
+]

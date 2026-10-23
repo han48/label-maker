@@ -1,0 +1,101 @@
+{
+  "widthMm": 50,
+  "heightMm": 30,
+  "gapMm": 2,
+  "safeMarginMm": 2,
+  "dynamicCsv": "product,description,price,weight,sku,image\n\"House Blend Coffee\",\"Medium roast with notes of caramel and toasted nuts.\",\"89,000 ₫\",250 g,COF-250,/static/images/coffee-bag.svg\n\"Cocoa Blend\",\"Rich cocoa with a smooth chocolate finish.\",\"95,000 ₫\",250 g,COF-251,/static/images/cocoa-bag.svg",
+  "elements": [
+    {
+      "id": "product-image-art",
+      "type": "image",
+      "name": "Demo product image",
+      "x": 2,
+      "y": 4,
+      "w": 15,
+      "h": 20,
+      "src": "{{image}}"
+    },
+    {
+      "id": "product-image-brand",
+      "type": "text",
+      "name": "Brand",
+      "x": 19,
+      "y": 2,
+      "w": 28,
+      "h": 2,
+      "text": "FRESH ROAST",
+      "fontSize": 1.6,
+      "fill": "#526158",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "product-image-title",
+      "type": "fitText",
+      "name": "Product name",
+      "x": 19,
+      "y": 5,
+      "w": 28,
+      "h": 4.5,
+      "text": "{{product}}",
+      "fill": "#18231d",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "product-image-description",
+      "type": "fitText",
+      "name": "Description",
+      "x": 19,
+      "y": 10,
+      "w": 28,
+      "h": 8,
+      "text": "{{description}}",
+      "fill": "#526158",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "product-image-price",
+      "type": "text",
+      "name": "Price",
+      "x": 19,
+      "y": 20,
+      "w": 25,
+      "h": 4.5,
+      "text": "{{price}}",
+      "fontSize": 3.3,
+      "fill": "#176c50",
+      "bold": true,
+      "align": "left"
+    },
+    {
+      "id": "product-image-weight",
+      "type": "text",
+      "name": "Weight",
+      "x": 19,
+      "y": 25.5,
+      "w": 11,
+      "h": 2,
+      "text": "{{weight}}",
+      "fontSize": 1.5,
+      "fill": "#526158",
+      "bold": false,
+      "align": "left"
+    },
+    {
+      "id": "product-image-sku",
+      "type": "text",
+      "name": "SKU",
+      "x": 33,
+      "y": 25.5,
+      "w": 14,
+      "h": 2,
+      "text": "{{sku}}",
+      "fontSize": 1.4,
+      "fill": "#59645e",
+      "bold": false,
+      "align": "right"
+    }
+  ]
+}

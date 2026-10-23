@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path fill="#ef9b22" d="M14 13h72v74H14z"/>
+  <path fill="#fff1cc" d="M21 20h58v60H21z"/>
+  <path fill="#c74b32" d="m14 13 12 0-12 12zm72 0L74 13l12 12zM14 87l12 0-12-12zm72 0-12 0 12-12z"/>
+  <text x="50" y="45" fill="#b43829" font-family="Arial,sans-serif" font-size="12" font-weight="900" letter-spacing="1" text-anchor="middle">CLEAR</text>
+  <text x="50" y="63" fill="#b43829" font-family="Arial,sans-serif" font-size="17" font-weight="900" letter-spacing="1" text-anchor="middle">ANCE</text>
+</svg>

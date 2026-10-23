@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="300" viewBox="0 0 240 300">
+  <rect width="240" height="300" rx="24" fill="#f1eadb"/>
+  <path d="M48 66 70 38h100l22 28-14 190H62z" fill="#356b50"/>
+  <path d="M48 66h144l-10 22H58z" fill="#244d39"/>
+  <path d="M69 112h102v82H69z" rx="8" fill="#f4ead7"/>
+  <text x="120" y="143" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#244d39">FRESH</text>
+  <text x="120" y="169" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#244d39">ROAST</text>
+  <path d="M102 220c4-19 13-30 22-40 10 14 13 26 10 40-10 7-21 7-32 0z" fill="#b7c98e"/>
+  <path d="M120 222c-3-18-1-31 3-42" fill="none" stroke="#356b50" stroke-width="3"/>
+  <text x="120" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" fill="#675b49">WHOLE BEANS</text>
+</svg>

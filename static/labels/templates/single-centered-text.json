@@ -1,0 +1,24 @@
+{
+  "widthMm": 50,
+  "heightMm": 30,
+  "gapMm": 2,
+  "safeMarginMm": 2,
+  "dynamicCsv": "message\n\"THANK YOU\"\nWELCOME",
+  "elements": [
+    {
+      "id": "single-centered-message",
+      "type": "text",
+      "name": "Centered message",
+      "x": 2,
+      "y": 2,
+      "w": 46,
+      "h": 26,
+      "text": "{{message}}",
+      "fontSize": 5,
+      "fill": "#176c50",
+      "bold": true,
+      "align": "center",
+      "verticalAlign": "middle"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+/* Font Awesome Free 6.7.2 by Fonticons, Inc.
+   Icons: CC BY 4.0; font: SIL OFL 1.1. https://fontawesome.com/license/free */
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("/static/fonts/fa-solid-900.woff2") format("woff2");
+}
+
+.fa-solid {
+  display: inline-block;
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fa-align-center::before { content: "\f037"; }
+.fa-arrow-down::before { content: "\f063"; }
+.fa-arrow-pointer::before { content: "\f245"; }
+.fa-arrow-up::before { content: "\f062"; }
+.fa-arrows-left-right::before { content: "\f337"; }
+.fa-barcode::before { content: "\f02a"; }
+.fa-border-all::before { content: "\f84c"; }
+.fa-circle::before { content: "\f111"; }
+.fa-circle-check::before { content: "\f058"; }
+.fa-circle-info::before { content: "\f05a"; }
+.fa-crop-simple::before { content: "\f125"; }
+.fa-file-arrow-down::before { content: "\f56d"; }
+.fa-file-circle-plus::before { content: "\e4ee"; }
+.fa-file-image::before { content: "\f1c5"; }
+.fa-file-pdf::before { content: "\f1c1"; }
+.fa-eraser::before { content: "\f12d"; }
+.fa-floppy-disk::before { content: "\f0c7"; }
+.fa-font::before { content: "\f031"; }
+.fa-mug-hot::before { content: "\f7b6"; }
+.fa-grip-lines::before { content: "\f7a4"; }
+.fa-image::before { content: "\f03e"; }
+.fa-icons::before { content: "\f86d"; }
+.fa-layer-group::before { content: "\f5fd"; }
+.fa-minus::before { content: "\f068"; }
+.fa-plus::before { content: "\f067"; }
+.fa-print::before { content: "\f02f"; }
+.fa-qrcode::before { content: "\f029"; }
+.fa-rotate-left::before { content: "\f2ea"; }
+.fa-ruler-combined::before { content: "\f546"; }
+.fa-scissors::before { content: "\f0c4"; }
+.fa-square::before { content: "\f0c8"; }
+.fa-tag::before { content: "\f02b"; }
+.fa-text-width::before { content: "\f035"; }
+.fa-trash::before { content: "\f1f8"; }
+.fa-truck-fast::before { content: "\f48b"; }
+.fa-up-right-and-down-left-from-center::before { content: "\f424"; }
+.fa-xmark::before { content: "\f00d"; }

@@ -1,0 +1,27 @@
+OpenMoji stickers
+
+The following OpenMoji illustrations are included in this application:
+- Price tag
+- Shopping cart
+- Shopping bags
+- Apple
+- Herb
+- Gift
+- Basket
+
+Creator: OpenMoji contributors, HfG Schwäbisch Gmünd
+Source: https://openmoji.org/ and https://github.com/hfg-gmuend/openmoji
+License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+License text: https://creativecommons.org/licenses/by-sa/4.0/
+
+The SVG illustrations are distributed under the license above. The license text
+is included in OPENMOJI-LICENSE.txt. The illustrations have not been modified.
+
+Original promotional label stickers
+
+The following promotional badge SVGs were created for this application and are
+not OpenMoji artwork:
+- HOT, SALE, 50% OFF, NEW, BEST SELLER, and CLEARANCE badges
+
+These original assets were created for this application and are not third-party
+artwork.

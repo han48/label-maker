@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path fill="#126b55" d="M50 3 61 10 74 7 80 19 93 24 91 38 98 50 91 62 93 76 80 81 74 93 61 90 50 97 39 90 26 93 20 81 7 76 9 62 2 50 9 38 7 24 20 19 26 7 39 10z"/>
+  <circle cx="50" cy="50" r="34" fill="none" stroke="#c9f27c" stroke-width="2"/>
+  <text x="50" y="48" fill="#fff" font-family="Arial,sans-serif" font-size="27" font-weight="900" text-anchor="middle">50%</text>
+  <text x="50" y="66" fill="#c9f27c" font-family="Arial,sans-serif" font-size="12" font-weight="900" letter-spacing="2" text-anchor="middle">OFF</text>
+</svg>

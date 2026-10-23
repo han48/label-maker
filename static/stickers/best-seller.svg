@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path fill="#723c91" d="M17 8h66v64l-13-8-13 8-12-8-14 8-14-8z"/>
+  <path fill="#51296c" d="M17 18h66v8H17z"/>
+  <path fill="#ffc857" d="m50 31 5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z"/>
+  <text x="50" y="22" fill="#fff" font-family="Arial,sans-serif" font-size="10" font-weight="900" letter-spacing="1" text-anchor="middle">BEST</text>
+  <text x="50" y="74" fill="#51296c" font-family="Arial,sans-serif" font-size="10" font-weight="900" letter-spacing="1" text-anchor="middle">SELLER</text>
+</svg>

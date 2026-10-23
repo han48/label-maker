@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111827">
+    <title>Label Studio — Thiết kế nhãn</title>
+    <link rel="stylesheet" href="/static/css/fontawesome.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Label Studio">
+        <span class="brand-mark"><i class="fa-solid fa-barcode" aria-hidden="true"></i></span>
+        <span>label<span class="brand-light">studio</span></span>
+      </a>
+      <div class="document-name">
+        <span class="live-dot"></span>
+        <span id="save-state" data-i18n="New design">Thiết kế mới</span>
+      </div>
+      <nav class="top-actions" aria-label="Tác vụ thiết kế" data-i18n-aria="Design actions">
+        <button class="button button-quiet" id="new-design" title="Tạo thiết kế mới" data-i18n-title="New design"><i class="fa-solid fa-file-circle-plus" aria-hidden="true"></i> <span data-i18n="New">Mới</span></button>
+        <button class="button button-quiet" id="open-design"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> <span data-i18n="Open">Mở</span></button>
+        <button class="button button-quiet" id="save-design"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> <span data-i18n="Save">Lưu</span></button>
+        <button class="button button-primary" id="save-draft" type="button"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> <span data-i18n="Save draft">Lưu bản nháp</span></button>
+        <button class="button button-quiet" id="export-png"><i class="fa-solid fa-file-image" aria-hidden="true"></i> <span data-i18n="Export PNG">Tải PNG</span></button>
+        <button class="button button-quiet" id="export-pdf"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> <span data-i18n="Print / PDF">In / PDF</span></button>
+        <button class="button button-primary" id="print-label">
+          <i class="fa-solid fa-print" aria-hidden="true"></i> <span data-i18n="Print label">In nhãn</span>
+        </button>
+        <label class="language-picker" title="Language" data-i18n-title="Language">
+          <i class="fa-solid fa-language" aria-hidden="true"></i>
+          <select id="language-select" aria-label="Language" data-i18n-aria="Language">
+            <option value="vi">Tiếng Việt</option>
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+          </select>
+        </label>
+        <input id="open-file" type="file" accept=".json,.olm,application/json" hidden>
+      </nav>
+    </header>
+
+    <dialog class="template-dialog" id="new-design-dialog" aria-labelledby="new-design-title">
+      <div class="template-dialog-heading">
+        <div>
+          <p class="eyebrow" data-i18n="Start a design">BẮT ĐẦU THIẾT KẾ</p>
+          <h2 id="new-design-title" data-i18n="Choose a starting point">Chọn điểm bắt đầu</h2>
+        </div>
+        <button class="icon-button" id="close-new-design" type="button" aria-label="Đóng" data-i18n-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <p class="hint" data-i18n="Template picker hint">Chọn một mẫu có sẵn để bắt đầu nhanh, hoặc tạo nhãn trống.</p>
+      <p class="hint template-privacy-hint" data-i18n="Template identity hint">Mẫu riêng được lưu trên máy này và gắn với ID trình duyệt. ID fingerprint không phải tài khoản bảo mật; thay đổi trình duyệt hoặc cấu hình có thể tạo ID khác.</p>
+      <button class="button button-quiet save-template-trigger" id="show-save-template" type="button"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> <span data-i18n="Save current as template">Lưu thiết kế hiện tại thành mẫu riêng</span></button>
+      <form class="save-template-form" id="save-template-form" hidden>
+        <label class="field-label" for="template-name" data-i18n="Template name">Tên mẫu</label>
+        <div class="save-template-controls">
+          <input class="field-input" id="template-name" name="name" type="text" maxlength="80" required>
+          <button class="button button-primary" id="confirm-save-template" type="submit"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> <span data-i18n="Save template">Lưu mẫu</span></button>
+        </div>
+      </form>
+      <div class="template-list" id="template-list" aria-live="polite"></div>
+      <div class="template-dialog-footer">
+        <button class="button button-quiet template-cancel" id="cancel-new-design" type="button" data-i18n="Cancel">Hủy</button>
+        <button class="button button-primary" id="new-blank-design" type="button"><i class="fa-solid fa-file-circle-plus" aria-hidden="true"></i> <span data-i18n="Start blank">Nhãn trống</span></button>
+      </div>
+    </dialog>
+
+    <dialog class="batch-preview-dialog" id="batch-preview-dialog" aria-labelledby="batch-preview-title">
+      <div class="template-dialog-heading">
+        <div>
+          <p class="eyebrow" data-i18n="Dynamic data">Dữ liệu động</p>
+          <h2 id="batch-preview-title" data-i18n="Preview all labels">Xem trước tất cả nhãn</h2>
+          <p class="batch-preview-count" id="batch-preview-count" aria-live="polite"></p>
+        </div>
+        <button class="icon-button" id="close-batch-preview" type="button" aria-label="Đóng" data-i18n-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <div class="batch-preview-list" id="batch-preview-list" aria-label="Label previews" data-i18n-aria="Label previews"></div>
+    </dialog>
+
+    <dialog class="template-dialog paper-print-dialog" id="paper-print-dialog" aria-labelledby="paper-print-title">
+      <div class="template-dialog-heading">
+        <div>
+          <p class="eyebrow" data-i18n="Dynamic data">Dữ liệu động</p>
+          <h2 id="paper-print-title" data-i18n="Print labels on paper">In nhãn trên giấy phổ thông</h2>
+        </div>
+        <button class="icon-button" id="close-paper-print" type="button" aria-label="Đóng" data-i18n-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <section id="paper-print-options">
+        <p class="hint" data-i18n="Paper print hint">Chọn khổ giấy. Ứng dụng tự chọn chiều giấy và cách xoay nhãn để xếp được nhiều nhãn nhất trên mỗi trang.</p>
+        <label class="field-label paper-size-label" for="paper-size" data-i18n="Paper size">Khổ giấy</label>
+        <select class="field-select" id="paper-size">
+          <option value="A0">A0 · 841 × 1189 mm</option>
+          <option value="A1">A1 · 594 × 841 mm</option>
+          <option value="A2">A2 · 420 × 594 mm</option>
+          <option value="A3">A3 · 297 × 420 mm</option>
+          <option value="A4" selected>A4 · 210 × 297 mm</option>
+          <option value="A5">A5 · 148 × 210 mm</option>
+          <option value="B0">B0 · 1000 × 1414 mm</option>
+          <option value="B1">B1 · 707 × 1000 mm</option>
+          <option value="B2">B2 · 500 × 707 mm</option>
+          <option value="B3">B3 · 353 × 500 mm</option>
+          <option value="B4">B4 · 250 × 353 mm</option>
+          <option value="B5">B5 · 176 × 250 mm</option>
+        </select>
+        <p class="paper-layout-summary" id="paper-layout-summary" aria-live="polite"></p>
+        <div class="template-dialog-footer">
+          <button class="button button-quiet template-cancel" id="cancel-paper-print" type="button" data-i18n="Cancel">Hủy</button>
+          <button class="button button-primary" id="preview-paper-print" type="button"><i class="fa-solid fa-eye" aria-hidden="true"></i> <span data-i18n="Preview print pages">Xem trước trang in</span></button>
+        </div>
+      </section>
+      <section class="paper-preview-screen" id="paper-preview-screen" hidden>
+        <div class="paper-preview-toolbar">
+          <button class="button button-quiet" id="back-to-paper-options" type="button"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span data-i18n="Back to paper settings">Quay lại chọn khổ giấy</span></button>
+          <p class="paper-preview-status" id="paper-preview-status" aria-live="polite"></p>
+        </div>
+        <div class="paper-preview-pages" id="paper-preview-pages" aria-label="Print page previews" data-i18n-aria="Print page previews"></div>
+        <div class="template-dialog-footer">
+          <button class="button button-quiet" id="back-to-paper-options-footer" type="button" data-i18n="Back to paper settings">Quay lại</button>
+          <button class="button button-primary" id="confirm-paper-print" type="button"><i class="fa-solid fa-print" aria-hidden="true"></i> <span data-i18n="Print on paper">In trên giấy</span></button>
+        </div>
+      </section>
+    </dialog>
+
+    <dialog class="asset-picker-dialog" id="sticker-picker-dialog" aria-labelledby="sticker-picker-title">
+      <div class="template-dialog-heading">
+        <div>
+          <p class="eyebrow" data-i18n="Add element">Thêm thành phần</p>
+          <h2 id="sticker-picker-title" data-i18n="Choose a sticker">Chọn sticker</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-picker="sticker-picker-dialog" aria-label="Đóng" data-i18n-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <p class="hint sticker-attribution"><span data-i18n="Sticker license">Sticker từ OpenMoji, giấy phép CC BY-SA 4.0.</span> <a href="/static/stickers/ATTRIBUTION.txt" target="_blank" rel="noreferrer" data-i18n="Attribution">Thông tin ghi công</a></p>
+      <div class="asset-picker-grid" id="sticker-picker-list"></div>
+    </dialog>
+
+    <dialog class="asset-picker-dialog" id="fa-picker-dialog" aria-labelledby="fa-picker-title">
+      <div class="template-dialog-heading">
+        <div>
+          <p class="eyebrow" data-i18n="Add element">Thêm thành phần</p>
+          <h2 id="fa-picker-title" data-i18n="Choose a Font Awesome icon">Chọn icon Font Awesome</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-picker="fa-picker-dialog" aria-label="Đóng" data-i18n-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <p class="hint" data-i18n="Font Awesome subset hint">Chọn một icon Solid có trong bộ icon của ứng dụng.</p>
+      <div class="asset-picker-grid fa-picker-grid" id="fa-picker-list"></div>
+    </dialog>
+
+    <dialog class="asset-picker-dialog" id="shape-picker-dialog" aria-labelledby="shape-picker-title">
+      <div class="template-dialog-heading">
+        <div>
+          <p class="eyebrow" data-i18n="Add element">Thêm thành phần</p>
+          <h2 id="shape-picker-title" data-i18n="Choose a shape">Chọn hình</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-picker="shape-picker-dialog" aria-label="Đóng" data-i18n-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <div class="asset-picker-grid shape-picker-grid" id="shape-picker-list"></div>
+    </dialog>
+
+    <dialog class="asset-picker-dialog" id="frame-picker-dialog" aria-labelledby="frame-picker-title">
+      <div class="template-dialog-heading">
+        <div>
+          <p class="eyebrow" data-i18n="Add element">Thêm thành phần</p>
+          <h2 id="frame-picker-title" data-i18n="Choose a label frame">Chọn khung nhãn</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-picker="frame-picker-dialog" aria-label="Đóng" data-i18n-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <p class="hint" data-i18n="Label frame hint">Khung được đặt bên trong vùng an toàn; có thể chỉnh bo góc, màu và độ dày.</p>
+      <div class="asset-picker-grid frame-picker-grid" id="frame-picker-list"></div>
+    </dialog>
+
+    <dialog class="image-edit-dialog" id="image-edit-dialog" aria-labelledby="image-edit-title">
+      <div class="template-dialog-heading">
+        <div>
+          <p class="eyebrow" data-i18n="Image editing">CHỈNH SỬA HÌNH ẢNH</p>
+          <h2 id="image-edit-title" data-i18n="Select image object">Chọn đối tượng trong ảnh</h2>
+        </div>
+        <button class="icon-button" id="close-image-editor" type="button" aria-label="Đóng" data-i18n-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <p class="hint image-edit-hint" data-i18n="Image editing hint">Nhấp trái vào đối tượng để chọn; nhấp phải vào vùng nền để loại trừ và tinh chỉnh vùng chọn.</p>
+      <div class="image-edit-toolbar">
+        <button class="small-action active" id="image-edit-foreground" type="button"><i class="fa-solid fa-plus" aria-hidden="true"></i> <span data-i18n="Add foreground point">Thêm điểm đối tượng</span></button>
+        <button class="small-action" id="image-edit-background" type="button"><i class="fa-solid fa-minus" aria-hidden="true"></i> <span data-i18n="Add background point">Thêm điểm nền</span></button>
+        <button class="small-action" id="clear-image-edit-points" type="button"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> <span data-i18n="Clear points">Xóa điểm chọn</span></button>
+        <button class="small-action" id="remove-image-background" type="button"><i class="fa-solid fa-eraser" aria-hidden="true"></i> <span data-i18n="Remove background automatically">Xóa nền tự động</span></button>
+        <button class="small-action" id="image-edit-crop" type="button"><i class="fa-solid fa-crop-simple" aria-hidden="true"></i> <span data-i18n="Crop image">Crop ảnh</span></button>
+        <button class="small-action" id="image-edit-eraser" type="button" disabled><i class="fa-solid fa-eraser" aria-hidden="true"></i> <span data-i18n="Eraser tool">Tẩy</span></button>
+        <label class="image-edit-eraser-size" for="image-edit-eraser-size">
+          <span data-i18n="Eraser size">Kích thước tẩy</span>
+          <input id="image-edit-eraser-size" type="range" min="4" max="120" value="32" data-i18n-aria="Eraser size">
+          <output id="image-edit-eraser-size-value" for="image-edit-eraser-size">32 px</output>
+        </label>
+        <button class="small-action" id="image-edit-reset-crop" type="button" hidden><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> <span data-i18n="Reset crop">Bỏ crop</span></button>
+      </div>
+      <div class="image-edit-canvas-wrap">
+        <canvas id="image-edit-canvas" aria-label="Ảnh để chọn đối tượng" data-i18n-aria="Image selection canvas"></canvas>
+        <canvas id="image-edit-mask" aria-hidden="true"></canvas>
+      </div>
+      <p class="image-edit-status" id="image-edit-status" role="status" aria-live="polite"></p>
+      <p class="hint image-edit-privacy" data-i18n="Image editing privacy">Ảnh được xử lý trong trình duyệt và không tải lên máy chủ. Lần đầu sử dụng sẽ tải mô hình AI công khai và có thể mất thời gian.</p>
+      <div class="image-edit-footer">
+        <button class="button button-quiet template-cancel" id="cancel-image-edit" type="button" data-i18n="Cancel">Hủy</button>
+        <button class="button button-primary" id="apply-image-edit" type="button" disabled><i class="fa-solid fa-check" aria-hidden="true"></i> <span data-i18n="Apply image edits">Áp dụng chỉnh sửa</span></button>
+      </div>
+    </dialog>
+
+    <main class="app-shell">
+      <aside class="sidebar left-sidebar">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" data-i18n="Workspace">WORKSPACE</p>
+            <h1 data-i18n="Label designer">Thiết kế nhãn</h1>
+          </div>
+        </div>
+
+        <section class="panel-section">
+          <div class="section-title"><span data-i18n="Label size">Kích thước nhãn</span><i class="section-icon fa-solid fa-arrows-left-right" aria-hidden="true"></i></div>
+          <div class="dimension-grid">
+            <label><span class="dimension-label" data-i18n="Width">Rộng</span><span data-i18n="mm">mm</span><input id="label-width" type="number" min="1" max="300" step="0.1"></label>
+            <label><span class="dimension-label" data-i18n="Height">Cao</span><span data-i18n="mm">mm</span><input id="label-height" type="number" min="1" max="300" step="0.1"></label>
+            <label class="full-width"><span class="dimension-label" data-i18n="Label gap">Khe giữa nhãn</span><span data-i18n="mm">mm</span><input id="label-gap" type="number" min="0" max="30" step="0.1"></label>
+            <label class="full-width"><span class="dimension-label" data-i18n="Safe inset">Lề an toàn</span><span data-i18n="mm">mm</span><input id="safe-inset" type="number" min="0" max="149" step="0.1"></label>
+          </div>
+          <p class="hint" data-i18n="Resize hint">Nhập số đo hoặc kéo cạnh/góc nhãn trên canvas để đổi kích thước.</p>
+          <p class="hint" data-i18n="Safe inset hint">Đường nét đứt là lề an toàn riêng, không phải khe nhãn. Điều chỉnh theo thông số máy in hoặc kết quả in thử.</p>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title"><span data-i18n="Add element">Thêm thành phần</span><i class="section-icon fa-solid fa-plus" aria-hidden="true"></i></div>
+          <div class="tool-grid">
+            <button class="tool-button" data-add="text"><i class="tool-icon fa-solid fa-font" aria-hidden="true"></i><span data-i18n="Text">Văn bản</span></button>
+            <button class="tool-button" data-add="fitText"><i class="tool-icon fa-solid fa-text-width" aria-hidden="true"></i><span data-i18n="Fit text">Văn bản tự co</span></button>
+            <button class="tool-button" data-add="qr"><i class="tool-icon fa-solid fa-qrcode" aria-hidden="true"></i><span data-i18n="QR code">QR code</span></button>
+            <button class="tool-button" data-add="barcode"><i class="tool-icon fa-solid fa-barcode" aria-hidden="true"></i><span data-i18n="Barcode">Mã vạch</span></button>
+            <button class="tool-button" id="add-shape"><i class="tool-icon fa-solid fa-square" aria-hidden="true"></i><span data-i18n="Shapes">Hình khối</span></button>
+            <button class="tool-button" id="add-frame"><i class="tool-icon fa-solid fa-border-all" aria-hidden="true"></i><span data-i18n="Label frames">Khung nhãn</span></button>
+            <button class="tool-button tool-image" id="add-image"><i class="tool-icon fa-solid fa-image" aria-hidden="true"></i><span data-i18n="Image">Hình ảnh</span></button>
+            <button class="tool-button" id="add-sticker"><i class="tool-icon fa-solid fa-tag" aria-hidden="true"></i><span data-i18n="Stickers">Sticker</span></button>
+            <button class="tool-button" id="add-fa-icon"><i class="tool-icon fa-solid fa-icons" aria-hidden="true"></i><span data-i18n="Font Awesome">Font Awesome</span></button>
+            <input id="image-file" type="file" accept="image/*" hidden>
+          </div>
+        </section>
+
+        <section class="panel-section printer-section">
+          <div class="section-title"><span data-i18n="Printer">Máy in</span><span class="status-pill checking" id="printer-status" data-i18n="Checking printer">Đang kiểm tra máy in</span></div>
+          <div class="printer-card">
+            <span class="printer-icon"><i class="fa-solid fa-print" aria-hidden="true"></i></span>
+            <div><strong>PT-260</strong><span id="printer-port" data-i18n="Reading port...">Đang đọc cổng...</span></div>
+            <i class="printer-ready fa-solid fa-circle-check" id="printer-ready" title="Sẵn sàng" aria-hidden="true" data-i18n-title="Ready" hidden></i>
+          </div>
+          <p class="hint" data-i18n="Bluetooth serial">Gửi lệnh trực tiếp qua Bluetooth serial.</p>
+          <p class="hint" data-i18n="Printer status hint">Đã kết nối Bluetooth nhưng chưa nhận được phản hồi trạng thái từ máy in.</p>
+        </section>
+
+        <div class="sidebar-footer">
+          <span class="keyboard-hint"><kbd>Del</kbd> <span data-i18n="Delete selected">xóa mục đã chọn</span></span>
+          <span class="keyboard-hint"><kbd>Ctrl</kbd><b>+</b><kbd>S</kbd> <span data-i18n="Save design shortcut">lưu thiết kế</span></span>
+        </div>
+      </aside>
+
+      <section class="editor-area" aria-label="Vùng thiết kế" data-i18n-aria="Design">
+        <div class="editor-toolbar">
+          <div class="breadcrumb"><span data-i18n="Design">Thiết kế</span><span class="breadcrumb-separator">/</span><strong id="canvas-size-label">—</strong></div>
+          <div class="canvas-controls">
+            <button class="icon-button" id="zoom-out" aria-label="Thu nhỏ" data-i18n-aria="Zoom out"><i class="fa-solid fa-minus" aria-hidden="true"></i></button>
+            <span id="zoom-value">100%</span>
+            <button class="icon-button" id="zoom-in" aria-label="Phóng to" data-i18n-aria="Zoom in"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            <span class="toolbar-divider"></span>
+            <button class="icon-button" id="fit-canvas" aria-label="Vừa khung" data-i18n-aria="Fit canvas"><i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="canvas-workspace" id="canvas-workspace">
+          <div class="canvas-wrap" id="canvas-wrap">
+            <svg id="label-canvas" role="img" aria-label="Bản xem trước nhãn" data-i18n-aria="Preview label"></svg>
+            <button class="canvas-resize-handle resize-width" data-resize="width" aria-label="Kéo để đổi chiều rộng nhãn" title="Kéo để đổi chiều rộng" data-i18n-aria="Resize label width" data-i18n-title="Resize label width title"></button>
+            <button class="canvas-resize-handle resize-height" data-resize="height" aria-label="Kéo để đổi chiều cao nhãn" title="Kéo để đổi chiều cao" data-i18n-aria="Resize label height" data-i18n-title="Resize label height title"></button>
+            <button class="canvas-resize-handle resize-both" data-resize="both" aria-label="Kéo để đổi chiều rộng và chiều cao nhãn" title="Kéo để đổi cả chiều rộng và chiều cao" data-i18n-aria="Resize label both" data-i18n-title="Resize label both title"></button>
+          </div>
+          <div class="canvas-caption">
+            <span data-i18n="Drag elements">Kéo thả thành phần để sắp xếp</span>
+            <span id="safe-area-status" class="safe-area-status" aria-live="polite"></span>
+            <span id="canvas-resolution">203 DPI · khổ tùy chỉnh</span>
+          </div>
+        </div>
+        <footer class="editor-footer">
+          <span data-i18n="Draft save hint">Bản nháp chỉ được lưu khi bạn nhấn “Lưu bản nháp”.</span>
+          <span class="privacy-note"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> <span data-i18n="Processed locally">Thiết kế được xử lý cục bộ</span></span>
+        </footer>
+      </section>
+
+      <aside class="sidebar right-sidebar">
+        <div class="inspector-tabs"><button class="tab active" data-tab="properties" data-i18n="Properties">Thuộc tính</button><button class="tab" data-tab="layers" data-i18n="Layers">Lớp</button><button class="tab" data-tab="data" data-i18n="Dynamic data">Dữ liệu</button></div>
+        <div id="properties-panel">
+          <div class="empty-inspector" id="empty-inspector">
+            <div class="empty-icon"><i class="fa-solid fa-arrow-pointer" aria-hidden="true"></i></div>
+            <strong data-i18n="Select an element">Chọn một thành phần</strong>
+            <p data-i18n="Select element hint">Chọn mục trên nhãn để chỉnh sửa thuộc tính.</p>
+          </div>
+          <div id="property-fields" hidden></div>
+        </div>
+        <div id="layers-panel" hidden>
+          <div class="layer-heading"><span data-i18n="Elements">Các thành phần</span><span id="layer-count">0</span></div>
+          <div id="layer-list"></div>
+        </div>
+        <div id="data-panel" hidden>
+          <div class="dynamic-data-content">
+            <p class="property-group-title" data-i18n="Dynamic data">Dữ liệu động</p>
+            <p class="hint" data-i18n="Dynamic data hint">Dùng {{column}} trong nội dung văn bản, QR, barcode hoặc nguồn ảnh. Hàng đầu CSV là tên cột.</p>
+            <label class="field-label" for="dynamic-csv" data-i18n="CSV input">Dữ liệu CSV</label>
+            <textarea class="field-input csv-input" id="dynamic-csv" rows="10" spellcheck="false" placeholder="product,price,barcode&#10;Coffee,89000,8938505974194"></textarea>
+            <p class="dynamic-status" id="dynamic-status" aria-live="polite"></p>
+            <label class="field-label" for="dynamic-preview" data-i18n="Preview row">Xem trước hàng</label>
+            <select class="field-select" id="dynamic-preview" disabled></select>
+            <button class="button button-quiet preview-all-button" id="preview-all-labels" type="button" disabled>
+              <i class="fa-solid fa-images" aria-hidden="true"></i>
+              <span data-i18n="Preview all labels">Xem trước tất cả nhãn</span>
+            </button>
+            <button class="button button-primary batch-print-button" id="print-batch" disabled>
+              <i class="fa-solid fa-print" aria-hidden="true"></i>
+              <span data-i18n="Print batch">In tất cả nhãn</span>
+            </button>
+            <button class="button button-quiet paper-print-button" id="print-batch-paper" type="button" disabled>
+              <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+              <span data-i18n="Print batch on paper">In nhãn trên giấy A/B</span>
+            </button>
+            <p class="hint" id="batch-progress" aria-live="polite"></p>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/static/js/i18n.js"></script>
+    <script src="/static/js/finger-id.js"></script>
+    <script src="/static/js/editor.js" defer></script>
+  </body>
+</html>
